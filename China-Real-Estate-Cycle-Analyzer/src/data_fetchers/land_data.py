@@ -116,9 +116,9 @@ class LandDataFetcher:
             
             # 均价持续上涨，直到2021年后涨幅放缓
             if year <= 2021:
-                base = 3000 + year * 200            else:
-                base = 720
-0 + (year - 2022) * 100
+                base = 3000 + year * 200
+            else:
+                base = 7200 + (year - 2022) * 100
             
             seasonal = 200 * np.sin(2 * np.pi * month / 12)
             noise = np.random.normal(0, 100)
