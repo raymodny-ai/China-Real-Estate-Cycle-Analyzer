@@ -206,3 +206,71 @@ python src/data_fetchers/run_all.py --rent
 ---
 
 *文档版本: v2.1 - 基于AKShare免费开源方案*
+
+---
+
+## 🤖 方法5: LLM 大模型智能获取
+
+通过调用在线大模型（MiniMax/OpenAI/Claude）智能分析数据来源并生成采集代码。
+
+### 安装依赖
+```bash
+pip install requests
+```
+
+### 配置 API Key
+```bash
+# MiniMax (推荐)
+export MINIMAX_API_KEY="your_key"
+
+# 或 OpenAI
+export OPENAI_API_KEY="your_key"
+
+# 设置提供商
+export LLM_PROVIDER="minimax"  # 或 "openai"
+```
+
+### 使用方式
+
+```bash
+# 获取数据源信息
+python src/data_fetchers/run_all.py --llm
+
+# 生成采集代码
+python src/data_fetchers/run_all.py --llm --generate-code
+```
+
+### 功能特点
+
+1. **智能分析**: LLM 自动分析最佳数据源
+2. **结构化输出**: 按 schema 输出 JSON 格式
+3. **代码生成**: 自动生成采集代码框架
+4. **交叉验证**: 提供多源校验建议
+
+### 支持的指标
+
+| 指标 | 提示词类型 |
+|------|-----------|
+| ACI | 去化周期数据源分析 |
+| FPI | 资金链压力数据源分析 |
+| LPR | 土地溢价率数据源分析 |
+
+### LLM 提示词特点
+
+- **四步任务**: 定义确认 → 免费来源 → 可复现抓取 → 交叉校验
+- **强制结构化输出**: 必须给出 JSON + 代码
+- **URL 证据**: 每条结论必须附 URL
+- **不输出长篇解读**: 只输出可执行的任务清单
+
+---
+
+## 📊 数据获取方法汇总
+
+| 方法 | 命令 | 适用场景 |
+|------|------|---------|
+| 模拟数据 | `--` (默认) | 开发测试 |
+| AKShare | `--real` | 程序化获取免费数据 |
+| 租售比 | `--rent` | 租房市场数据 |
+| LLM智能 | `--llm` | 探索新数据源 |
+| LLM代码 | `--llm --generate-code` | 生成采集框架 |
+
