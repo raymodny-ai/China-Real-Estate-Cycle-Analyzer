@@ -1,0 +1,56 @@
+# China Real Estate Cycle Analyzer - Docker Compose
+version: '3.8'
+
+services:
+  # Streamlit 应用
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: china-re-analyzer
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    environment:
+      - ENV=production
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_PORT=8501
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # 可选：数据更新定时任务
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: china-re-scheduler
+    command: python -c "
+      import schedule
+      import time
+      from src.data_fetchers.run_all import main
+      
+      schedule.every().day.at('02:00').do(main)
+      
+      while True:
+        schedule.run_pending()
+        time.sleep(60)
+    "
+    volumes:
+      - ./data:/app/data
+    environment:
+      - ENV=production
+    restart: unless-stopped
+
+# 网络配置
+networks:
+  default:
+    name: china-re-network
+    driver: bridge

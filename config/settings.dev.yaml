@@ -1,0 +1,16 @@
+# 开发环境配置覆盖
+# config/settings.dev.yaml
+
+# 覆盖默认配置中的开发环境特定设置
+
+model:
+  weights:
+    aci: 0.4
+    fpi: 0.3
+    lpr: 0.3
+
+logging:
+  level: DEBUG
+
+# 开发环境启用详细日志
+debug: true

@@ -1,0 +1,56 @@
+# ===================================================
+# 中国房地产周期分析模型 — 配置文件
+# China Real Estate Cycle Analyzer — Settings
+# ===================================================
+
+model:
+  # 三大指标权重 (合计必须为 1.0)
+  weights:
+    aci: 0.4    # 去化周期权重
+    fpi: 0.3    # 房企资金链权重
+    lpr: 0.3    # 土地溢价率权重
+
+  thresholds:
+    # ACI 去化周期（月）
+    aci_warning: 20         # 预警线：接近红线时发出警告
+    aci_limit: 24           # 警戒线（全国基准）：超过此值代表库存严峻
+    # FPI 净融资额
+    fpi_positive_level: 0   # 资金转正红线
+
+    # LPR 土地溢价率改善检测
+    lpr_ma_window: 6        # 滚动均值窗口（月）
+    lpr_slope_window: 6     # 线性回归斜率窗口（月）
+
+# 城市分级 ACI 阈值（月）
+city_tiers:
+  tier1:                    # 一线城市
+    label: "一线城市"
+    aci_warning: 15
+    aci_limit: 18
+    color: "#EF553B"
+  tier2:                    # 二线城市
+    label: "二线城市"
+    aci_warning: 20
+    aci_limit: 24
+    color: "#FFA15A"
+  tier3:                    # 三线及以下城市
+    label: "三四线城市"
+    aci_warning: 26
+    aci_limit: 30
+    color: "#FF6692"
+
+# 预警系统配置
+alerts:
+  aci_near_limit_pct: 0.85  # ACI 超过警戒线的 85% 时触发预警
+  ci_high_threshold: 0.7    # CI 高于此值代表底部信号强烈
+
+# 数据时间范围
+data:
+  start_date: "2013-01-01"
+  default_display_years: 10
+
+# 日志配置
+logging:
+  level: "INFO"            # DEBUG / INFO / WARNING / ERROR
+  log_dir: "logs"
+  log_file: "app.log"

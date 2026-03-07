@@ -1,0 +1,41 @@
+# 中国房地产周期分析器依赖
+
+# 核心框架
+streamlit>=1.28.0
+pandas>=2.0.0
+plotly>=5.18.0
+sqlalchemy>=2.0.0
+
+# 数据处理
+numpy>=1.24.0
+scipy>=1.11.0
+pyyaml>=6.0.1
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# API 与网络
+requests>=2.31.0
+tenacity>=8.2.0  # 重试机制
+
+# 免费数据源
+akshare>=1.12.0  # 开源财经数据接口（强烈推荐！）
+
+# 数据验证
+pydantic>=2.0.0
+
+# 缓存
+pyarrow>=14.0.0  # Parquet 格式支持
+
+# 测试
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+pytest-asyncio>=0.21.0
+
+# 代码质量
+ruff>=0.1.0
+mypy>=1.7.0
+
+# Excel 导出
+openpyxl>=3.1.2

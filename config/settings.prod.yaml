@@ -1,0 +1,22 @@
+# 生产环境配置覆盖
+# config/settings.prod.yaml
+
+model:
+  weights:
+    aci: 0.4
+    fpi: 0.3
+    lpr: 0.3
+  thresholds:
+    aci_warning: 20
+    aci_limit: 24
+
+logging:
+  level: INFO
+
+# 生产环境关闭调试
+debug: false
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_minutes: 60

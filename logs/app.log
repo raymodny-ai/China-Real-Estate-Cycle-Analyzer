@@ -1,0 +1,441 @@
+2026-02-25 09:17:47 | INFO     | pipeline | ============================================================
+2026-02-25 09:17:47 | INFO     | pipeline | 启动完整数据管道 (China RE Cycle Analyzer)
+2026-02-25 09:17:47 | INFO     | pipeline | ============================================================
+2026-02-25 09:17:47 | INFO     | pipeline | [1/5] 获取 ACI 去化周期数据...
+2026-02-25 09:17:47 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2013-01-01 → 2026-02-25
+2026-02-25 09:17:47 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 157 条记录。ACI 区间: [0.6, 27.7] 月
+2026-02-25 09:17:48 | INFO     | src.data_fetchers.macro_data | ACI 数据已保存至数据库 [macro_aci_data]。
+2026-02-25 09:17:48 | INFO     | pipeline | [2/5] 获取 FPI 资金链数据...
+2026-02-25 09:17:48 | INFO     | src.data_fetchers.financial_data | 正在获取 FPI 数据（模拟年度数据）
+2026-02-25 09:17:48 | INFO     | src.data_fetchers.financial_data | FPI 数据生成完毕，共 13 条年度记录。 净融资区间: [-11730, 73926] 万元
+2026-02-25 09:17:49 | INFO     | src.data_fetchers.financial_data | FPI 数据已保存至数据库 [financial_fpi_data]（年度频率，指标计算时需前向填充）。
+2026-02-25 09:17:49 | INFO     | pipeline | [3/5] 获取 LPR 土地溢价率数据...
+2026-02-25 09:17:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2013-01-01 → 2026-02-25
+2026-02-25 09:17:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 157 条记录。 溢价率区间: [0.0%, 29.6%]
+2026-02-25 09:17:50 | INFO     | src.data_fetchers.land_data | LPR 数据已保存至数据库 [land_lpr_data]。
+2026-02-25 09:17:50 | INFO     | pipeline | [4/5] 计算 CI 复合研判指数...
+2026-02-25 09:17:50 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 09:17:50 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 09:17:51 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.9月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 09:17:51 | INFO     | pipeline | [5/5] 运行回测 + 生成中日对比数据...
+2026-02-25 09:17:51 | INFO     | src.models.backtest | 开始回测，共 157 个月度数据点
+2026-02-25 09:17:51 | INFO     | src.models.backtest | 回测绩效 — 峰值 HPI: 185.8 | 最新 HPI: 185.6 | 最大回撤: -16.13% | 夏普: 0.51 | CI 信号命中率: 59.54%
+2026-02-25 09:17:52 | INFO     | src.models.backtest | 回测结果已保存至数据库 [backtest_results] 和 [backtest_performance]。
+2026-02-25 09:17:53 | INFO     | src.models.backtest | 中日对比时间序列数据已保存 [japan_comparison]，共 42 条。
+2026-02-25 09:17:53 | INFO     | pipeline | ============================================================
+2026-02-25 09:17:53 | INFO     | pipeline | ✅ 全部管道步骤完成！运行 `streamlit run app.py` 查看仪表盘。
+2026-02-25 09:17:53 | INFO     | pipeline | ============================================================
+2026-02-25 09:18:08 | INFO     | pipeline | ============================================================
+2026-02-25 09:18:08 | INFO     | pipeline | 启动完整数据管道 (China RE Cycle Analyzer)
+2026-02-25 09:18:08 | INFO     | pipeline | ============================================================
+2026-02-25 09:18:08 | INFO     | pipeline | [1/5] 获取 ACI 去化周期数据...
+2026-02-25 09:18:08 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2013-01-01 → 2026-02-25
+2026-02-25 09:18:08 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 157 条记录。ACI 区间: [0.6, 29.0] 月
+2026-02-25 09:18:09 | INFO     | src.data_fetchers.macro_data | ACI 数据已保存至数据库 [macro_aci_data]。
+2026-02-25 09:18:09 | INFO     | pipeline | [2/5] 获取 FPI 资金链数据...
+2026-02-25 09:18:09 | INFO     | src.data_fetchers.financial_data | 正在获取 FPI 数据（模拟年度数据）
+2026-02-25 09:18:09 | INFO     | src.data_fetchers.financial_data | FPI 数据生成完毕，共 13 条年度记录。 净融资区间: [-13486, 78339] 万元
+2026-02-25 09:18:10 | INFO     | src.data_fetchers.financial_data | FPI 数据已保存至数据库 [financial_fpi_data]（年度频率，指标计算时需前向填充）。
+2026-02-25 09:18:10 | INFO     | pipeline | [3/5] 获取 LPR 土地溢价率数据...
+2026-02-25 09:18:10 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2013-01-01 → 2026-02-25
+2026-02-25 09:18:10 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 157 条记录。 溢价率区间: [0.0%, 30.5%]
+2026-02-25 09:18:11 | INFO     | src.data_fetchers.land_data | LPR 数据已保存至数据库 [land_lpr_data]。
+2026-02-25 09:18:11 | INFO     | pipeline | [4/5] 计算 CI 复合研判指数...
+2026-02-25 09:18:11 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 09:18:11 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 09:18:12 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.4月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 09:18:12 | INFO     | pipeline | [5/5] 运行回测 + 生成中日对比数据...
+2026-02-25 09:18:12 | INFO     | src.models.backtest | 开始回测，共 157 个月度数据点
+2026-02-25 09:18:12 | INFO     | src.models.backtest | 回测绩效 — 峰值 HPI: 186.3 | 最新 HPI: 186.0 | 最大回撤: -11.49% | 夏普: 0.56 | CI 信号命中率: 56.49%
+2026-02-25 09:18:14 | INFO     | src.models.backtest | 回测结果已保存至数据库 [backtest_results] 和 [backtest_performance]。
+2026-02-25 09:18:15 | INFO     | src.models.backtest | 中日对比时间序列数据已保存 [japan_comparison]，共 42 条。
+2026-02-25 09:18:15 | INFO     | pipeline | ============================================================
+2026-02-25 09:18:15 | INFO     | pipeline | ✅ 全部管道步骤完成！运行 `streamlit run app.py` 查看仪表盘。
+2026-02-25 09:18:15 | INFO     | pipeline | ============================================================
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.7] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.7] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.9] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.0] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.2] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.3] 月
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [5.6%, 29.4%]
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [3.8%, 27.3%]
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [5.1%, 28.7%]
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [3.7%, 31.2%]
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:19:29 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [4.4%, 30.8%]
+2026-02-25 09:19:29 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 09:19:29 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 09:19:29 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.9] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.0] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.0] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.7] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.4] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.2] 月
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [6.1%, 30.1%]
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [4.6%, 31.6%]
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [5.5%, 28.1%]
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [7.9%, 29.4%]
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:19 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [6.6%, 29.7%]
+2026-02-25 09:28:19 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 09:28:19 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 09:28:19 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.3] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.2] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.1] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.2] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.9] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.0] 月
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [4.1%, 29.0%]
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [7.2%, 27.3%]
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [7.6%, 27.5%]
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [5.8%, 28.2%]
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:28:49 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [8.5%, 26.8%]
+2026-02-25 09:28:49 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 09:28:49 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 09:28:49 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.8] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.6] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.4] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.8] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 4.7] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | 正在生成 ACI 模拟数据: 2020-01-01 → 2023-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.macro_data | ACI 数据生成完毕，共 48 条记录。ACI 区间: [0.6, 5.0] 月
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [6.4%, 29.5%]
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [5.9%, 28.4%]
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [4.5%, 31.9%]
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [4.6%, 30.1%]
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | 正在生成 LPR 模拟数据: 2020-01-01 → 2024-12-31
+2026-02-25 09:36:59 | INFO     | src.data_fetchers.land_data | LPR 数据生成完毕，共 60 条记录。 溢价率区间: [6.6%, 30.7%]
+2026-02-25 09:36:59 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 09:36:59 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 09:36:59 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.9] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.3, 4.8] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 4.7] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.4, 5.3] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [55436, 74468] 万元
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [59581, 75109] 万元
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2015 → 2024
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 10 条年度记录。 净融资区间: [-2682, 77127] 万元
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [10.3%, 28.3%]
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [8.7%, 26.9%]
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [10.5%, 32.1%]
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2015-01-01 → 2024-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 120 条记录。 溢价率区间: [0.0%, 29.8%]
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2022-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 24 条记录。 ACI 区间: [1.7, 5.9] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2022 → 2023
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 2 条年度记录。 净融资区间: [66683, 73311] 万元
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2022-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 24 条记录。 溢价率区间: [13.2%, 28.6%]
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 4.6] 月
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:05:14 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [8.3%, 32.6%]
+2026-02-25 10:05:14 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 10:05:14 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 10:05:14 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 10:05:14 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.5] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.8, 5.0] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.3] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.0, 4.9] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [62299, 88020] 万元
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [53688, 83297] 万元
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2015 → 2024
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 10 条年度记录。 净融资区间: [4990, 84572] 万元
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [9.4%, 27.9%]
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [9.9%, 28.1%]
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [10.0%, 28.1%]
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2015-01-01 → 2024-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 120 条记录。 溢价率区间: [0.0%, 30.0%]
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2022-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 24 条记录。 ACI 区间: [1.4, 4.7] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2022 → 2023
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 2 条年度记录。 净融资区间: [80242, 80600] 万元
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2022-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 24 条记录。 溢价率区间: [15.5%, 27.7%]
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.2] 月
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 10:06:01 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [9.7%, 28.3%]
+2026-02-25 10:06:01 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 10:06:01 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 10:06:01 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 10:06:01 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.3] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.2, 5.1] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.3] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 12 条记录。 ACI 区间: [3.4, 5.1] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [64993, 77780] 万元
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 4 条年度记录。 净融资区间: [52221, 81524] 万元
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2015 → 2024
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 10 条年度记录。 净融资区间: [3804, 87516] 万元
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [8.7%, 27.8%]
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [10.1%, 27.9%]
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [9.4%, 28.9%]
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2015-01-01 → 2024-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 120 条记录。 溢价率区间: [0.0%, 28.9%]
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2022-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 24 条记录。 ACI 区间: [1.7, 5.0] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2022 → 2023
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | 使用 FPI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.financial_data | FPI 模拟数据生成完毕，共 2 条年度记录。 净融资区间: [74996, 76201] 万元
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2022-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 24 条记录。 溢价率区间: [16.1%, 28.5%]
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | 使用 ACI 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.macro_data | ACI 模拟数据生成完毕，共 48 条记录。 ACI 区间: [0.6, 5.0] 月
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | 使用 LPR 模拟数据
+2026-02-25 11:00:46 | INFO     | src.data_fetchers.land_data | LPR 模拟数据生成完毕，共 48 条记录。 溢价率区间: [10.6%, 27.4%]
+2026-02-25 11:00:46 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 11:00:46 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 11:00:46 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 11:00:46 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 11:05:28 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 11:05:28 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 11:05:28 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 11:05:28 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 11:07:03 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 11:07:03 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 11:07:03 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 11:07:03 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 11:09:48 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:00 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:00 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 11:10:05 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:05 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:10 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:10 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2020-12-31
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | ✅ FPI 数据获取成功 (East Money)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2020 → 2023
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | ✅ FPI 数据获取成功 (East Money)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2015 → 2024
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.financial_data | ✅ FPI 数据获取成功 (East Money)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2015-01-01 → 2024-12-31
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:15 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2022-01-01 → 2023-12-31
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.financial_data | 获取 FPI 数据: 2022 → 2023
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.financial_data | ✅ FPI 数据获取成功 (East Money)
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2022-01-01 → 2023-12-31
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:20 | INFO     | src.data_fetchers.macro_data | 获取 ACI 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:26 | INFO     | src.data_fetchers.macro_data | ✅ ACI 数据获取成功 (AKShare)
+2026-02-25 11:10:26 | INFO     | src.data_fetchers.land_data | 获取 LPR 数据: 2020-01-01 → 2023-12-31
+2026-02-25 11:10:26 | INFO     | src.data_fetchers.land_data | ✅ LPR 数据获取成功 (AKShare)
+2026-02-25 11:10:26 | WARNING  | src.models.indicators | [ALERT] 🟢 CI 指数 0.90 高于 0.7，底部信号较强，多项指标同向改善。
+2026-02-25 11:10:26 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 26.0 月已超过警戒线 24 月！库存严峻。
+2026-02-25 11:10:26 | WARNING  | src.models.indicators | [ALERT] 🟡 去化周期 22.0 月接近警戒线（20→24 月预警区间）。
+2026-02-25 11:10:26 | DEBUG    | src.models.indicators | 无预警触发。
+2026-02-25 12:10:53 | INFO     | pipeline | ============================================================
+2026-02-25 12:10:53 | INFO     | pipeline | 启动完整数据管道 (China RE Cycle Analyzer)
+2026-02-25 12:10:53 | INFO     | pipeline | ============================================================
+2026-02-25 12:10:53 | INFO     | pipeline | [1/5] 获取 ACI 去化周期数据...
+2026-02-25 12:10:54 | INFO     | src.data_fetchers.macro_data | 使用现有 ACI 数据: 157 条
+2026-02-25 12:10:54 | INFO     | pipeline | [2/5] 获取 FPI 资金链数据...
+2026-02-25 12:10:54 | INFO     | src.data_fetchers.financial_data | 使用现有 FPI 数据: 13 条
+2026-02-25 12:10:54 | INFO     | pipeline | [3/5] 获取 LPR 土地溢价率数据...
+2026-02-25 12:10:54 | INFO     | src.data_fetchers.land_data | 使用现有 LPR 数据: 157 条
+2026-02-25 12:10:54 | INFO     | pipeline | [4/5] 计算 CI 复合研判指数...
+2026-02-25 12:10:54 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 12:10:54 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 12:10:54 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 12:10:54 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 12:10:54 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 12:10:56 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.4月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 12:10:56 | INFO     | pipeline | [5/5] 运行回测 + 生成中日对比数据...
+2026-02-25 12:10:56 | INFO     | src.models.backtest | 开始回测，共 157 个月度数据点
+2026-02-25 12:10:56 | INFO     | src.models.backtest | 回测绩效 — 峰值 HPI: 187.9 | 最新 HPI: 187.9 | 最大回撤: -10.22% | 夏普: 0.63 | CI 信号命中率: 58.02%
+2026-02-25 12:10:58 | INFO     | src.models.backtest | 回测结果已保存至数据库 [backtest_results] 和 [backtest_performance]。
+2026-02-25 12:10:59 | INFO     | src.models.backtest | 中日对比时间序列数据已保存 [japan_comparison]，共 42 条。
+2026-02-25 12:10:59 | INFO     | pipeline | ============================================================
+2026-02-25 12:10:59 | INFO     | pipeline | ✅ 全部管道步骤完成！运行 `streamlit run app.py` 查看仪表盘。
+2026-02-25 12:10:59 | INFO     | pipeline | ============================================================
+2026-02-25 12:11:30 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:35:59 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 12:35:59 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 12:35:59 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 12:35:59 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 12:35:59 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 12:36:00 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.4月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 12:36:00 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:39:47 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:56:35 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:57:28 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:58:32 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 12:59:41 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 13:02:03 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 13:21:55 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 13:21:56 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 13:21:56 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 13:21:56 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 13:21:56 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 13:21:56 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 13:21:57 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.4月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 13:21:57 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 13:22:04 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 13:22:06 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.4, FPI=0.3, LPR=0.3 | 阈值: ACI<36月, FPI>0, LPR MA窗口=6月
+2026-02-25 13:22:06 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 13:22:06 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 13:22:06 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 13:22:06 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 13:22:07 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.40 | ACI=24.4月 | I_ACI=1 I_FPI=0 I_LPR=0
+2026-02-25 13:22:07 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:47:55 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:48:24 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:48:29 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:48:34 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.55, FPI=0.45, LPR=0.3 | 阈值: ACI<24月, FPI>0, LPR MA窗口=6月
+2026-02-25 16:48:34 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:48:34 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 16:48:34 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:48:34 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 16:48:35 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.00 | ACI=24.4月 | I_ACI=0 I_FPI=0 I_LPR=0
+2026-02-25 16:48:35 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:50:22 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:50:47 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:50:51 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:26 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:29 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:32 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:42 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:58 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:51:59 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.55, FPI=0.45, LPR=0.3 | 阈值: ACI<36月, FPI>0, LPR MA窗口=6月
+2026-02-25 16:51:59 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:51:59 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 16:51:59 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:51:59 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 16:52:00 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.55 | ACI=24.4月 | I_ACI=1 I_FPI=0 I_LPR=0
+2026-02-25 16:52:00 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:52:13 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。
+2026-02-25 16:52:37 | INFO     | src.models.indicators | CI 计算参数 — 权重: ACI=0.55, FPI=0.45, LPR=0.3 | 阈值: ACI<36月, FPI>0, LPR MA窗口=6月
+2026-02-25 16:52:37 | DEBUG    | src.models.indicators | ACI 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:52:37 | DEBUG    | src.models.indicators | FPI 数据: 13 条，时间范围 2013-12-31 → 2025-12-31
+2026-02-25 16:52:37 | DEBUG    | src.models.indicators | LPR 数据: 157 条，时间范围 2013-01-31 → 2026-01-31
+2026-02-25 16:52:37 | WARNING  | src.models.indicators | FPI 为年度数据，向下前向填充至月度（近似处理）。建议接入真实月度融资数据以提高精度。
+2026-02-25 16:52:38 | INFO     | src.models.indicators | CI 指数计算完毕，共 157 条。 最新值: CI=0.55 | ACI=24.4月 | I_ACI=1 I_FPI=0 I_LPR=0
+2026-02-25 16:52:38 | WARNING  | src.models.indicators | [ALERT] 🔴 去化周期 24.4 月已超过警戒线 24 月！库存严峻。

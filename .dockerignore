@@ -1,0 +1,11 @@
+.git
+.idea
+__pycache__/
+*.pyc
+logs/
+data/cache/
+data/housing_data.db
+.env
+.pytest_cache/
+.venv/
+venv/
