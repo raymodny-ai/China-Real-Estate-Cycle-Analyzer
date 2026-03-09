@@ -1,0 +1,73 @@
+# China Real Estate Cycle Analyzer - Settings
+
+# Model Configuration
+model:
+  # Indicator Weights (Composite Index)
+  weights:
+    aci: 0.4    # 去化周期权重
+    fpi: 0.3    # 资金链权重
+    lpr: 0.3    # 土地溢价率权重
+  
+  # Threshold Settings
+  thresholds:
+    aci_limit: 24        # ACI 警戒线 (月)
+    fpi_threshold: 0     # FPI 临界值
+    lpr_change_threshold: 0.05  # LPR 变化阈值 (5%)
+  
+  # City Tier Thresholds (按城市等级区分)
+  city_tiers:
+    tier1:      # 一线城市
+      aci_limit: 18
+    tier2:      # 二线城市
+      aci_limit: 24
+    tier3:      # 三线城市
+      aci_limit: 30
+
+# Data Source Configuration
+data_sources:
+  # National Bureau of Statistics
+  nbs:
+    enabled: false
+    api_key: ""  # Register at https://data.stats.gov.cn/
+  
+  # East Money
+  eastmoney:
+    enabled: true
+    api_key: ""
+  
+  # Wind (Commercial)
+  wind:
+    enabled: false
+    api_key: ""
+    account: ""
+
+# LPR Settings
+lpr:
+  # Primary rate (5Y LPR)
+  primary_rate: 5Y
+  # Moving average period
+  ma_period: 6
+  # Trend detection
+  trend_period: 3
+
+# Backtest Settings
+backtest:
+  initial_capital: 1000000
+  commission: 0.001
+  slippage: 0.002
+
+# UI Settings
+ui:
+  default_city: "北京"
+  default_date_range: 
+    start: "2020-01"
+    end: "2024-12"
+  theme: "dark"
+  refresh_interval: 300  # seconds
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/app.log"
+  max_size: 10MB
+  backup_count: 5
